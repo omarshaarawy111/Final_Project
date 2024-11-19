@@ -14,8 +14,8 @@ import pickle
 #function to authenticate user
 def authenticate_user(email, password):
     #super admin credentials
-    #user email is omar@epsilonai.com and password is 011235813
-    return email == "omar@epsilonai.com" and password == "011235813"
+    #user email is Omar  and password is 0096612122255Aa*
+    return email == "Omar" and password == "0096612122255Aa*"
 
 #function to apply manual pipeline to the coming data (cleaning,feature engineering and encoding) then predict and return the target column of our uploaded data
 def pip_predict(x): 
@@ -177,11 +177,8 @@ def pip_predict(x):
     #open our saved trained model ---> the best model and performance we can get
     #apply prediction
     #load the model
-    # Load the pickled model
+    #load the pickled model
     pickled_model = pickle.load(open('../models/train_model.pkl', 'rb'))
-    #create PCA
-    pca = PCA(n_components=10)
-    x = pca.fit_transform(x)
     #Standarization
     #create standard scaler object
     scaler = StandardScaler()
@@ -206,17 +203,21 @@ def pip_predict(x):
 
 #web app
 def main():
-#meta data for our web app
+#meta data for our web app (layout , fav icon , page title)
     st.set_page_config(
         layout="wide",
-        page_title='Credit Score Prediction App💰',    
+        page_icon='💰',
+        page_title='Credit Score Prediction App',    
     )    
+    
+
 #login phase
     #check if the user already logged in
     is_logged_in = st.session_state.get('is_logged_in', False)
     #check cases for login
     if not is_logged_in:
-        st.title("Welcome to credit score prediction project")
+        #change title color to white to fit black color of background image
+        st.markdown('<h1 style="text-align: center; color : #000;font-size:24px,font-family:pt-serif">Sign in</h1>', unsafe_allow_html=True)
         #login form
         email = st.text_input("Email")
         password = st.text_input("Password", type="password")
@@ -231,6 +232,7 @@ def main():
                 st.error("Wrong Email or password .")
 
     else :
+        st.empty()
         show_upload()
 
 #upload file phase        
@@ -247,7 +249,7 @@ def show_upload():
         st.success("File uploaded successfully !")
 #dashboard phase (visuals and predictions)
         #page content
-        st.markdown('<h1 style="text-align: center; color : white;font-size:24px,font-family:pt-serif">Credit score dashboard</h1>', unsafe_allow_html=True)
+        st.markdown('<h1 style="text-align: center; color : #000;font-size:24px,font-family:pt-serif">Credit score dashboard</h1>', unsafe_allow_html=True)
         #read the uploaded file as data frame using pandas
         df = pd.read_csv(uploaded_file)
         #page side bar

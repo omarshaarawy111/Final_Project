@@ -14,8 +14,8 @@ import pickle
 #function to authenticate user
 def authenticate_user(email, password):
     #super admin credentials
-    #user email is omar@epsilonai.com and password is 011235813
-    return email == "omar@epsilonai.com" and password == "011235813"
+    #user email is Omar  and password is 0096612122255Aa*
+    return email == "Omar" and password == "0096612122255Aa*"
 
 #function to apply manual pipeline to the coming data (cleaning,feature engineering and encoding) then predict and return the target column of our uploaded data
 def pip_predict(x): 
